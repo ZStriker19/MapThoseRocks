@@ -78,6 +78,9 @@ function initMap() {
              if (infowindow){
                  infowindow.close();
              }
+//             if (infowindow2){
+//                 infowindow2.close();
+//             }
          }
         })(marker, i));
         

@@ -1,13 +1,39 @@
+html, body {
+    padding: 0;
+    margin: 0;
+}
+
+.icon {
+    background: lightblue;
+    border-radius: 50%;
+}
+
 #map {
-        height: 400px;  /* The height is 400 pixels */
-        width: 100%;  /* The width is the width of the web page */
+        height: 100vh;  /* The height is 400 pixels */
+        width: 100vw;  /* The width is the width of the web page */
+        float: none;
+/*        z-index: -1;*/
+        top: 0px;
        }
 
 h1 {
-    color: aqua;
+    color: red;
 }
 
 
 h5 {
-    margin: 0px;
+    margin: 0px
+}
+
+.menu {
+    z-index: 1;
+    position: fixed;
+    left: 0;
+    top: 20px;
+    width: auto;
+    background: #f0f;
+}
+
+.dropdown:click .dropdown-content {
+    display: block;
 }
