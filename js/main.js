@@ -2,7 +2,7 @@ var routeObjList = [];
 function initMap() {
     console.log("We init dis map");
     
-  var NorthCol = {lat: 40.03, lng: -105.25};
+  var NorthCol = {lat: 55.03, lng: -105.25};
 
   var map = new google.maps.Map(
       document.getElementById('map'), 
@@ -94,7 +94,12 @@ function initMap() {
     
     
     
-  var marker = new google.maps.Marker({position: NorthCol, map: map});
+  var marker = new google.maps.Marker({
+      position: NorthCol, 
+      map: map,
+      draggable: true
+  });
+    
     var marker = new google.maps.Marker({
   position: {flat : -39, lng : 100},
   map: map,
@@ -188,21 +193,8 @@ function initMap() {
         
         });
     };
-//    for (var i = 0; i < beaches.length; i++) {
-//          var beach = beaches[i];
-//          var marker = new google.maps.Marker({
-//            position: {lat: beach[1], lng: beach[2]},
-//            map: map,
-//            icon: image,
-//            shape: shape,
-//            title: beach[0],
-//            zIndex: beach[3]
-//          });
-//}
 
 
-
-// so figure out how to turn these into markers on the map.
     
      function queryMP() {
         var latTextInput = document.getElementById('latTextInput');
@@ -251,6 +243,18 @@ function initMap() {
      }
 
 $(document).ready(function() {
+    let $filter = $('#filter');
+    let $menu = $('#menu')
+    $filter.on('click', ()=> {
+        if ($menu.hasClass('fadeOutLeft')) {
+            $menu.removeClass('fadeOutLeft');
+            $menu.addClass('slideInLeft');
+        } else {
+            console.log(0);
+            $menu.addClass('fadeOutLeft');
+            $menu.removeClass('slideInLeft');
+        }
+    })
     console.log("alright");
     //To later be input via google maps geolocatin API or forms.
 //    var addTodoTextInput = document.getElementById('addTodoTextInput');

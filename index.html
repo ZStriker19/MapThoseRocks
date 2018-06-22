@@ -3,26 +3,33 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles/animate.min.css">
+    <link rel="stylesheet" href="styles/styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
     <title>RockMaps</title>
 </head>
 
 <body>
-  <h1 id='topLeftLogo'>Climbing Route Finder</h1>
-   <div class="menu">
-    <img class = 'icon' src="imgs/FIlter.png" alt="options">
-    <img class = 'icon' onclick="queryMP()" src="imgs/Search.png" alt="options">
+  <h1 id='topRightLogo'>Climbing Route Finder</h1>
+  <div class='buttons'>
+      <img class = 'icon' id = 'filter' src="imgs/Filter.png" alt="options">
+      <br>
+      <img class = 'icon' onclick="queryMP()" src="imgs/Search.png" alt="options">
+  </div>
+  
+   <div id="menu" class="animated">
+    <h4>Filter Your Search</h4>
     <div class="forms">
         <h5>Latitude</h5>
-        <input type="text" id="latTextInput" value="40.03">
+        <input type="text" class = "clear" id="latTextInput" value="40.03">
         <h5>Longitude</h5>
-        <input id ="lonTextInput" type = "text" value="-105.25">
+        <input class = "clear" id ="lonTextInput" type = "text" value="-105.25">
         <h5>How far away?</h5>
-        <input type="text" id="maxDistanceTextInput" value="10">
+        <input class = "clear" type="text" id="maxDistanceTextInput" value="10">
         <h5>Minimum difficulty</h5>
-        <input type="text" id="minDiffTextInput" value="5.6">
+        <input class = "clear" type="text" id="minDiffTextInput" value="5.6">
         <h5>Maximum difficulty</h5>
-        <input type="text" id ="maxDiffTextInput" value="5.10">
+        <input class = "clear" type="text" id ="maxDiffTextInput" value="5.10">
 <!--        <button onclick="queryMP()"><h3>Let's See Those Future Sends!</h3></button>-->
        </div>
    </div>
