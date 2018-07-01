@@ -137,8 +137,11 @@ function initMap() {
         var infowindow2 = new google.maps.InfoWindow;
         google.maps.event.addListener(marker, 'click', (function(marker, i) {
          return function() {
-             var contentString = '<div id="content">'+
-            '<h4>Route Name: ' + routeObjList[i].name + '</h4>'+
+             var contentString = 
+            '<div class="iw-container">'+
+            '<div class = "iw-title">' +
+            '<h4>' + routeObjList[i].name + '</h4>'+
+            '</div>'+
             '<h4>Route Difficulty: ' + routeObjList[i].rating + '</h4>'+
             '<h4>Route Type: ' + routeObjList[i].type + '</h4>' +
             '<h4>Route Stars: ' + routeObjList[i].stars + '</h4>' +
