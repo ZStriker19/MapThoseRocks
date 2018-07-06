@@ -264,34 +264,23 @@ function initMap() {
          
          
          
-         
-        $.ajax({
-            url:'https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=' + lat + ' &lon=' + lon+ '&maxDistance=' + maxDistance + '&minDiff=' + minDiff + '&maxDiff=' + maxDiff + '&key=200281230-f53e043253280bf68ad7836198a7d45b',
-            type: 'GET',
-            data: {
-                format:'json', 
-            },
-            success: function(response) {
-                console.log("We Goin")
-                var resp = response;
-                console.log(resp.routes[0]);
-
-                var allRouteArr = [];
-                var count = Object.keys(resp.routes).length;
+fetch('https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=' + lat + ' &lon=' + lon + '&maxDistance=' + maxDistance + '&minDiff=' + minDiff + '&maxDiff=' + maxDiff + '&key=200281230-f53e043253280bf68ad7836198a7d45b')
+            .then(res => res.json())
+            .then(res => {
+                console.log('We Goin');
+                console.log(res.routes[0]);
+                
+                const allRouteArr = [];
+                const count = Object.keys(res.routes).length;
                 console.log(count);
-                for (let i =0; i < count; i++) {
-                    routeObjList.push(resp.routes[i]);
+                
+                for (let i = 0; i < count; ++i) {
+                    routeObjList.push(res.routes[i]);
                 }
                 initMap();
-            },
+            }).catch(err => console.log('not working!', err));
 
-            error : function() {
-                console.log('not working!');
-            }
-        })
-         
      }
-
 $(document).ready(function() {
     let $filter = $('#filter');
     let $menu = $('#menu')
