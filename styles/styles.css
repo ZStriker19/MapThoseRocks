@@ -99,18 +99,92 @@ h5 {
    background-color: #4465ff;
    color: white;
    margin: 1px;
-   border-radius: 2px 2px; /* In accordance with the rounding of the default infowindow corners. */
+   border-radius: 4px; /* In accordance with the rounding of the default infowindow corners. */
 }
 
 
 .gm-style-iw {
-   //width: 350px !important;
+ // width: 350px !important;
   // top: 15px !important;
    //left: 0 !important;
    //background-color: #fff;
    //box-shadow: 0 1px 6px rgba(178, 178, 178, 0.6);
    //border: 1px solid rgba(72, 181, 233, 0.6);
-   border-radius: 25px 25px 25px 25px;
+   //border-radius: 25px 25px 25px 25px;
    color: #4465ff;
    font-family: 'Varela Round', sans-serif;
 }
+
+.routeInfoSection {
+    display: flex;
+    align-items: center;
+
+}
+
+.infoBubbleArrow {
+    width: 80px;
+    height: 80px;
+    border-radius: 80%;
+    border: 2px solid #4465ff;
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+
+.indivInfoPresentation {
+    margin: 10px;
+    
+}
+
+.arrow {
+    margin: auto;
+    padding: 3px;
+    display: block;
+    z-index: 3;
+}
+
+
+#ratingTxt {
+    position: relative;
+    top: 20%
+  
+}
+
+.indivInfoPresentation h4 {
+     display: block;
+    text-align: center;
+    position: relative;
+    top 20%;
+}
+
+
+
+#gradeTxt {
+  position: relative;
+    top: 20%
+}
+
+
+
+#typeTxt {
+   position: relative;
+    top: 20%
+}
+
+
+.iw-container .routePic {
+    clip-path: inset(30px 1px 350px 1px);
+    margin-bottom: -79%;
+}
+
+/*
+.routePicdiv {
+    width: 100%;
+    height: 50px;
+}
+*/
+
+.iw-container img:hover {
+}
+    
+

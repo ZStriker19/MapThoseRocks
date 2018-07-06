@@ -7,7 +7,7 @@ function initMap() {
   var map = new google.maps.Map(
       document.getElementById('map'), 
       {
-          zoom: 4, 
+          zoom: 6, 
           center: NorthCol,
           styles: [
             {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
@@ -134,19 +134,56 @@ function initMap() {
              map: map
         });
         
+        map.setZoom(10);
+        map.panTo(marker.position);
+        
         var infowindow2 = new google.maps.InfoWindow;
         google.maps.event.addListener(marker, 'click', (function(marker, i) {
          return function() {
+             let currentRoute = routeObjList[i];
              var contentString = 
-            '<div class="iw-container">'+
-            '<div class = "iw-title">' +
-            '<h4>' + routeObjList[i].name + '</h4>'+
-            '</div>'+
-            '<h4>Route Difficulty: ' + routeObjList[i].rating + '</h4>'+
-            '<h4>Route Type: ' + routeObjList[i].type + '</h4>' +
-            '<h4>Route Stars: ' + routeObjList[i].stars + '</h4>' +
-            '<img src=' + routeObjList[i].imgSqSmall +'>' +
-            '</div>';
+`<div class="iw-container">
+    <div class="routePicDiv">
+         <a href =${currentRoute.url} target="_blank">
+            <img class="routePic" src= ${currentRoute.imgMedium}>
+        </a>
+    </div>
+    <div class = "iw-title">
+        <h4>${currentRoute.name}</h4>
+    </div>
+    <div class="routeInfoSection">
+        <div class="indivInfoPresentation">      
+            <div class="infoBubbleArrow">
+                <h4 id="ratingTxt">Rating</h4>
+            </div>
+            <img src="../imgs/arrow.png" class="arrow"/>
+            <h4> ${currentRoute.stars} </h4>
+        </div>
+        <div class="indivInfoPresentation">     
+            <div class="infoBubbleArrow">
+                <h4 id="gradeTxt">Grade</h4>
+            </div>
+            <img src="../imgs/arrow.png" class="arrow"/>
+            <h4>${currentRoute.rating}</h4>
+        </div>
+            <div class="indivInfoPresentation">      
+                <div class="infoBubbleArrow">
+                    <h4 id="typeTxt">Type</h4>
+                </div>
+                <img src="../imgs/arrow.png" class="arrow"/>
+                <h4> ${currentRoute.type}</h4>
+            </div>
+                 
+        </div>
+</div>`;
+             
+             
+//              google.maps.event.addListener(map, 'click', function(event) {
+//                  
+//    alert("Latitude: " + event.latLng.lat() + " " + ", longitude: " + event.latLng.lng());
+//  });
+//             
+             
              infowindow2.setContent(contentString);
              infowindow2.open(map, marker);
              if (infowindow){
@@ -164,6 +201,16 @@ function initMap() {
              infowindow.open(map, marker);
          }
         })(marker, i));
+        
+//        google.maps.event.addListener(marker, 'click', (function(event) {
+//         return function() {
+//                 if (infowindow2){
+//                      infowindow2.close();
+//                 }
+//         }
+//        })(marker, i));
+        
+        
         
          google.maps.event.addListener(marker, 'mouseout', (function(marker, i) {
          return function() {
@@ -259,10 +306,6 @@ $(document).ready(function() {
         }
     })
     console.log("alright");
-    //To later be input via google maps geolocatin API or forms.
-//    var addTodoTextInput = document.getElementById('addTodoTextInput');
-//    todoList.addTodo(addTodoTextInput.value);
-    
     
 });
 
