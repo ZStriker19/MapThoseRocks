@@ -134,6 +134,12 @@ function initMap() {
              map: map
         });
         
+//        <div class="routePicDiv">
+//         <a href =${currentRoute.url} target="_blank">
+//            <img class="routePic" src= ${currentRoute.imgMedium}>
+//        </a>
+//    </div>
+        
         map.setZoom(10);
         map.panTo(marker.position);
         
@@ -142,39 +148,36 @@ function initMap() {
          return function() {
              let currentRoute = routeObjList[i];
              var contentString = 
-`<div class="iw-container">
-    <div class="routePicDiv">
-         <a href =${currentRoute.url} target="_blank">
-            <img class="routePic" src= ${currentRoute.imgMedium}>
-        </a>
-    </div>
-    <div class = "iw-title">
-        <h4>${currentRoute.name}</h4>
-    </div>
-    <div class="routeInfoSection">
-        <div class="indivInfoPresentation">      
-            <div class="infoBubbleArrow">
-                <h4 id="ratingTxt">Rating</h4>
-            </div>
-            <img src="../imgs/arrow.png" class="arrow"/>
-            <h4> ${currentRoute.stars} </h4>
+`<div class="iw-container" style= "background-image: url(${currentRoute.imgMedium})" >
+    <div class="white-cover">
+        <div class = "iw-title">
+           <a href= "${currentRoute.url}" target="_blank"> <h4>${currentRoute.name}</h4> </a>
         </div>
-        <div class="indivInfoPresentation">     
-            <div class="infoBubbleArrow">
-                <h4 id="gradeTxt">Grade</h4>
-            </div>
-            <img src="../imgs/arrow.png" class="arrow"/>
-            <h4>${currentRoute.rating}</h4>
-        </div>
+        <div class="routeInfoSection">
             <div class="indivInfoPresentation">      
                 <div class="infoBubbleArrow">
-                    <h4 id="typeTxt">Type</h4>
+                    <h4 id="ratingTxt">Rating</h4>
                 </div>
                 <img src="../imgs/arrow.png" class="arrow"/>
-                <h4> ${currentRoute.type}</h4>
+                <h4> ${currentRoute.stars} </h4>
             </div>
-                 
-        </div>
+            <div class="indivInfoPresentation">     
+                <div class="infoBubbleArrow">
+                    <h4 id="gradeTxt">Grade</h4>
+                </div>
+                <img src="../imgs/arrow.png" class="arrow"/>
+                <h4>${currentRoute.rating}</h4>
+            </div>
+                <div class="indivInfoPresentation">      
+                    <div class="infoBubbleArrow">
+                        <h4 id="typeTxt">Type</h4>
+                    </div>
+                    <img src="../imgs/arrow.png" class="arrow"/>
+                    <h4> ${currentRoute.type}</h4>
+                </div>
+
+            </div>
+    </div>
 </div>`;
              
              
@@ -221,9 +224,7 @@ function initMap() {
 //                 infowindow2.close();
 //             }
          }
-        })(marker, i));
-        
-         
+        })(marker, i));     
     }
     
     var image = {
