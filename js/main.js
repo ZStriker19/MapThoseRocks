@@ -140,14 +140,18 @@ function initMap() {
 //        </a>
 //    </div>
         
+        
         map.setZoom(10);
         map.panTo(marker.position);
+
         
         var infowindow2 = new google.maps.InfoWindow;
         google.maps.event.addListener(marker, 'click', (function(marker, i) {
          return function() {
              let currentRoute = routeObjList[i];
-             var contentString = 
+             
+             
+             let contentString = 
 `<div class="iw-container" style= "background-image: url(${currentRoute.imgMedium})" >
     <div class="white-cover">
         <div class = "iw-title">
@@ -181,11 +185,10 @@ function initMap() {
 </div>`;
              
              
-//              google.maps.event.addListener(map, 'click', function(event) {
-//                  
-//    alert("Latitude: " + event.latLng.lat() + " " + ", longitude: " + event.latLng.lng());
-//  });
-//             
+             google.maps.event.addListener(map, 'click', function( event ){
+  alert( "Latitude: "+event.latLng.lat()+" "+", longitude: "+event.latLng.lng() ); 
+});
+             
              
              infowindow2.setContent(contentString);
              infowindow2.open(map, marker);
@@ -200,7 +203,11 @@ function initMap() {
 //         google.maps.event.addEventListener(marker, 'mouseover')
          google.maps.event.addListener(marker, 'mouseover', (function(marker, i) {
          return function() {
-             infowindow.setContent(routeObjList[i].name);
+             let contentString = 
+`<div class="small-window">
+    <p> ${routeObjList[i].name} </p>
+</div>`
+             infowindow.setContent(contentString);
              infowindow.open(map, marker);
          }
         })(marker, i));
