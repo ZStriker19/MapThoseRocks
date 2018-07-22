@@ -2,9 +2,9 @@ var routeObjList = [];
 function initMap() {
     console.log("We init dis map");
     
-  var NorthCol = {lat: 55.03, lng: -105.25};
+  let NorthCol = {lat: 55.03, lng: -105.25};
 
-  var map = new google.maps.Map(
+  let map = new google.maps.Map(
       document.getElementById('map'), 
       {
           zoom: 6, 
@@ -106,19 +106,7 @@ function initMap() {
     title : 'Hiiii'    
 });
     
-//     var image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
-//        var beachMarker = new google.maps.Marker({
-//          position: {lat: -33.890, lng: 151.274},
-//          map: map,
-//          icon: image
-//        });
-//    var image = 'imgs/adamOndraDawnWall.jpg';
-//        var ondra = new google.maps.Marker({
-//          position: {lat: -34.890, lng: 151.274},
-//          map: map,
-//          icon: image
-//        });
-    
+
     var infowindow = new google.maps.InfoWindow;
     var marker, i;
     console.log("Should enter for loop to make markers here.")
@@ -133,14 +121,7 @@ function initMap() {
              },
              map: map
         });
-        
-//        <div class="routePicDiv">
-//         <a href =${currentRoute.url} target="_blank">
-//            <img class="routePic" src= ${currentRoute.imgMedium}>
-//        </a>
-//    </div>
-        
-        
+
         map.setZoom(10);
         map.panTo(marker.position);
 
@@ -184,12 +165,6 @@ function initMap() {
     </div>
 </div>`;
              
-             
-             google.maps.event.addListener(map, 'click', function( event ){
-  alert( "Latitude: "+event.latLng.lat()+" "+", longitude: "+event.latLng.lng() ); 
-});
-             
-             
              infowindow2.setContent(contentString);
              infowindow2.open(map, marker);
              if (infowindow){
@@ -198,9 +173,6 @@ function initMap() {
          }
         })(marker, i));
         
-       
-        
-//         google.maps.event.addEventListener(marker, 'mouseover')
          google.maps.event.addListener(marker, 'mouseover', (function(marker, i) {
          return function() {
              let contentString = 
@@ -212,67 +184,77 @@ function initMap() {
          }
         })(marker, i));
         
-//        google.maps.event.addListener(marker, 'click', (function(event) {
-//         return function() {
-//                 if (infowindow2){
-//                      infowindow2.close();
-//                 }
-//         }
-//        })(marker, i));
-        
-        
+//        google.maps.event.addListener(map, 'click', function( event ){
+//  alert( "Latitude: "+event.latLng.lat()+" "+", longitude: "+event.latLng.lng() ); 
+//});
+             
+             google.maps.event.addListener(map, 'click', function( event ){
+                 let searchInfo = [];
+                 console.log("let's go!")
+                 let lat = event.latLng.lat();
+                 let lng = event.latLng.lng();
+                 
+                 var maxDistanceTextInput = document.getElementById('maxDistanceTextInput');
+                 var maxDistance = maxDistanceTextInput.value;
+
+                 var minDiffTextInput = document.getElementById('minDiffTextInput');
+                 var minDiff = minDiffTextInput.value;
+
+                 var maxDiffTextInput = document.getElementById('maxDiffTextInput');
+                 var maxDiff = maxDiffTextInput.value;
+
+                 searchInfo.push(lat);
+                 searchInfo.push(lng);
+                 searchInfo.push(maxDistance);
+                 searchInfo.push(minDiff);
+                 searchInfo.push(maxDiff);
+                 
+                 mpQuery(searchInfo);
+                 
+});
+             
         
          google.maps.event.addListener(marker, 'mouseout', (function(marker, i) {
          return function() {
              if (infowindow){
                  infowindow.close();
              }
-//             if (infowindow2){
-//                 infowindow2.close();
-//             }
          }
         })(marker, i));     
     }
     
-    var image = {
-    url: "https:\/\/cdn-files.apstatic.com\/climb\/105935643_sqsmall_1494061717.jpg",
-    // This marker is 20 pixels wide by 32 pixels high.
-    size: new google.maps.Size(48, 36),
-    // The origin for this image is (0, 0).
-    origin: new google.maps.Point(0, 0),
-    // The anchor for this image is the base of the flagpole at (0, 32).
-    anchor: new google.maps.Point(0, 32)
-  };
-    var marker = new google.maps.Marker({
-        position: { lat: 40, lng: 0},
-        map: map,
-        icon: image,
-        title: "nice beach place",
-        
-        });
-    };
+};
 
 
     
-     function queryMP() {
-        var latTextInput = document.getElementById('latTextInput');
-        var lat = latTextInput.value;
+     function getInfoFromForms() {
+        let searchInfo = []
+        let latTextInput = document.getElementById('latTextInput');
+        let lat = latTextInput.value;
          
-        var lonTextInput = document.getElementById('lonTextInput');
-        var lon =lonTextInput.value;
+        let lngTextInput = document.getElementById('lngTextInput');
+        let lng =lngTextInput.value;
          
-        var maxDistanceTextInput = document.getElementById('maxDistanceTextInput');
-        var maxDistance = maxDistanceTextInput.value;
+        let maxDistanceTextInput = document.getElementById('maxDistanceTextInput');
+        let maxDistance = maxDistanceTextInput.value;
          
-         var minDiffTextInput = document.getElementById('minDiffTextInput');
-         var minDiff = minDiffTextInput.value;
+         let minDiffTextInput = document.getElementById('minDiffTextInput');
+         let minDiff = minDiffTextInput.value;
          
-         var maxDiffTextInput = document.getElementById('maxDiffTextInput');
-         var maxDiff = maxDiffTextInput.value;
+         let maxDiffTextInput = document.getElementById('maxDiffTextInput');
+         let maxDiff = maxDiffTextInput.value;
          
+         searchInfo.push(lat);
+         searchInfo.push(lng);
+         searchInfo.push(maxDistance);
+         searchInfo.push(minDiff);
+         searchInfo.push(maxDiff);
+         return searchInfo;
          
+         }
          
-fetch('https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=' + lat + ' &lon=' + lon + '&maxDistance=' + maxDistance + '&minDiff=' + minDiff + '&maxDiff=' + maxDiff + '&key=200281230-f53e043253280bf68ad7836198a7d45b')
+function mpQuery(searchInfo){
+    fetch('https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=' + searchInfo[0] + ' &lon=' + searchInfo[1] + '&maxDistance=' + searchInfo[2] + '&minDiff=' + searchInfo[3] + '&maxDiff=' + searchInfo[4] + '&key=200281230-f53e043253280bf68ad7836198a7d45b')
             .then(res => res.json())
             .then(res => {
                 console.log('We Goin');
@@ -289,6 +271,13 @@ fetch('https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=' + lat +
             }).catch(err => console.log('not working!', err));
 
      }
+
+
+function queryMPWithForms(){
+    mpQuery(getInfoFromForms())
+    
+}
+
 $(document).ready(function() {
     let $filter = $('#filter');
     let $menu = $('#menu')
@@ -305,6 +294,9 @@ $(document).ready(function() {
     console.log("alright");
     
 });
+    
+
+
 
 //{
 //    "routes": [
