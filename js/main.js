@@ -147,7 +147,7 @@ const setMap = () => {
                 <div class="infoBubbleArrow">
                     <h4 id="gradeTxt">Grade</h4>
                 </div>
-                <img src="../imgs/arrow.png" class="arrow"/>
+                <img src="imgs/arrow.png" class="arrow"/>
                 <h4>${currentRoute.rating}</h4>
             </div>
                 <div class="indivInfoPresentation">      
