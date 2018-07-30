@@ -19,11 +19,19 @@
   
    <div id="menu" class="animated">
     <h4>Filter Your Search</h4>
+    <div class="inline">
+    <h5>Click to search</h5>
+    <label class="switch"/>
+        <input id="click-to-search" type="checkbox">
+        <span class="slider round"></span>
+    </div>
     <div class="forms">
-        <h5>Latitude</h5>
-        <input type="text" class = "clear" id="latTextInput" value="40.03">
-        <h5>Longitude</h5>
-        <input class = "clear" id ="lngTextInput" type = "text" value="-105.25">
+        <div id="location">
+            <h5>Latitude</h5>
+            <input type="text" class = "clear" id="latTextInput" value="40.03">
+            <h5>Longitude</h5>
+            <input class = "clear" id ="lngTextInput" type = "text" value="-105.25">
+        </div>
         <h5>How far away?</h5>
         <input class = "clear" type="text" id="maxDistanceTextInput" value="10">
         <h5>Minimum difficulty</h5>

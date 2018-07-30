@@ -103,14 +103,10 @@ function initMap() {
 
 
 const setMap = () => {
-    console.log("in map")
 
     var infowindow = new google.maps.InfoWindow;
     var marker, i;
-    console.log("Should enter for loop to make markers here.")
-    console.log(routeObjList);
     for ( i = 0; i < routeObjList.length; i++) {
-        console.log(routeObjList[i].name);
         marker = new google.maps.Marker({
              position: {
                 lat: routeObjList[i].latitude , 
@@ -191,14 +187,11 @@ const setMap = () => {
         
     }
     
-    //                google.maps.event.addListener(map, 'click', function( event ){
-//  alert( "Latitude: "+event.latLng.lat()+" "+", longitude: "+event.latLng.lng() ); 
-//});
-//             tears the world asunder 
+    
      google.maps.event.addListener(map, 'click', function( event ){
+         if(document.getElementById('click-to-search').checked === true) {
          let searchInfo = {};
 
-         console.log("let's go!")
          let lat = event.latLng.lat();
          let lng = event.latLng.lng();
 
@@ -218,6 +211,8 @@ const setMap = () => {
          searchInfo.maxDiff = maxDiff;
 
          mpQuery(searchInfo);
+             
+         }
                  
 });
     
@@ -250,15 +245,12 @@ const setMap = () => {
      }
          
 const mpQuery = (searchInfo) => {
-    fetch('https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=' + searchInfo.lat + ' &lon=' + searchInfo.lng + '&maxDistance=' + searchInfo.maxDistance + '&minDiff=' + searchInfo.minDiff + '&maxDiff=' + searchInfo.maxDiff + '&key=200281230-f53e043253280bf68ad7836198a7d45b')
+    fetch(`https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=${searchInfo.lat}&lon=${searchInfo.lng} &maxDistance=${searchInfo.maxDistance}&minDiff=${searchInfo.minDiff}&maxDiff=${searchInfo.maxDiff}&key=200281230-f53e043253280bf68ad7836198a7d45b`)
     .then(res => res.json())
     .then(res => {
-        console.log('We Goin');
-        console.log(res.routes[0]);
 
         const allRouteArr = [];
         const count = Object.keys(res.routes).length;
-        console.log(count);
 
         for (let i = 0; i < count; ++i) {
             routeObjList.push(res.routes[i]);
@@ -272,7 +264,18 @@ const queryMPWithForms = () => {
     mpQuery(getInfoFromForms())
 }
 
+//var clickToSearch = document.getElementById('click-to-search');
+//clickToSearch.addEventListener('change', (event) => {
+//    if (event.target.checked) {
+//        document.getElementById('lat-lng').hide();
+//    }
+//}
+
 $(document).ready(function() {
+    $('#click-to-search').on('change', (event) => {
+        let latLng = $('#lat-lng');
+        event.target.checked ? latLng.hide('slow') : latLng.show('slow');
+    });
     let $filter = $('#filter');
     let $menu = $('#menu')
     $filter.on('click', ()=> {
@@ -280,12 +283,10 @@ $(document).ready(function() {
             $menu.removeClass('fadeOutLeft');
             $menu.addClass('slideInLeft');
         } else {
-            console.log(0);
             $menu.addClass('fadeOutLeft');
             $menu.removeClass('slideInLeft');
         }
     })
-    console.log("alright");
     
 });
     

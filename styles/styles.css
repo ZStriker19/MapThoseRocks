@@ -79,6 +79,62 @@ h5 {
     top: 75px
 }
 
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 30px;
+  height: 17px;
+}
+
+.switch input {display:none;}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 13px;
+  width: 13px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #4465ff;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #4465ff;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(13px);
+  -ms-transform: translateX(13px);
+  transform: translateX(13px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 17px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
 #topRightLogo {
     color: white;
     font-size: 20px;
@@ -90,6 +146,7 @@ h5 {
     pointer-events: none;
 
 }
+
 
 .iw-container  .iw-title {
    font-family: 'Open Sans Condensed', sans-serif;
@@ -145,7 +202,7 @@ h5 {
     display: block;
     text-align: center;
     position: relative;
-/*    top 20%;*/
+    top 20%;
 }
 
 .arrow {
@@ -161,9 +218,6 @@ h5 {
     top: 20%
   
 }
-
-
-
 
 
 #gradeTxt {
@@ -183,7 +237,7 @@ h5 {
     z-index: 4;
     border-radius: 7px;
     position: relative;
-    top: 100px;
+    top: 140px;
 }
 
 a:link, a:visited {
