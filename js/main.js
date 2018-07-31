@@ -99,6 +99,34 @@ function initMap() {
       map: map,
       draggable: true
     });
+    
+    google.maps.event.addListener(map, 'click', function( event ){
+        if(document.getElementById('click-to-search').checked === true) {
+         let searchInfo = {};
+
+         let lat = event.latLng.lat();
+         let lng = event.latLng.lng();
+
+         var maxDistanceTextInput = document.getElementById('maxDistanceTextInput');
+         var maxDistance = maxDistanceTextInput.value;
+
+         var minDiffTextInput = document.getElementById('minDiffTextInput');
+         var minDiff = minDiffTextInput.value;
+
+         var maxDiffTextInput = document.getElementById('maxDiffTextInput');
+         var maxDiff = maxDiffTextInput.value;
+
+         searchInfo.lat = lat;
+         searchInfo.lng = lng;
+         searchInfo.maxDistance = maxDistance;
+         searchInfo.minDiff = minDiff;
+         searchInfo.maxDiff = maxDiff;
+
+         mpQuery(searchInfo);
+             
+         }
+                 
+});
 }
 
 
@@ -188,33 +216,6 @@ const setMap = () => {
     }
     
     
-     google.maps.event.addListener(map, 'click', function( event ){
-         if(document.getElementById('click-to-search').checked === true) {
-         let searchInfo = {};
-
-         let lat = event.latLng.lat();
-         let lng = event.latLng.lng();
-
-         var maxDistanceTextInput = document.getElementById('maxDistanceTextInput');
-         var maxDistance = maxDistanceTextInput.value;
-
-         var minDiffTextInput = document.getElementById('minDiffTextInput');
-         var minDiff = minDiffTextInput.value;
-
-         var maxDiffTextInput = document.getElementById('maxDiffTextInput');
-         var maxDiff = maxDiffTextInput.value;
-
-         searchInfo.lat = lat;
-         searchInfo.lng = lng;
-         searchInfo.maxDistance = maxDistance;
-         searchInfo.minDiff = minDiff;
-         searchInfo.maxDiff = maxDiff;
-
-         mpQuery(searchInfo);
-             
-         }
-                 
-});
     
 };
 
@@ -264,18 +265,14 @@ const queryMPWithForms = () => {
     mpQuery(getInfoFromForms())
 }
 
-//var clickToSearch = document.getElementById('click-to-search');
-//clickToSearch.addEventListener('change', (event) => {
-//    if (event.target.checked) {
-//        document.getElementById('lat-lng').hide();
-//    }
-//}
+
 
 $(document).ready(function() {
     $('#click-to-search').on('change', (event) => {
         let latLng = $('#lat-lng');
         event.target.checked ? latLng.hide('slow') : latLng.show('slow');
     });
+    
     let $filter = $('#filter');
     let $menu = $('#menu')
     $filter.on('click', ()=> {
