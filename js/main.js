@@ -132,8 +132,8 @@ function initMap() {
 
 const setMap = () => {
 
-    var infowindow = new google.maps.InfoWindow;
-    var marker, i;
+    const infowindow = new google.maps.InfoWindow;
+    let marker, i;
     for ( i = 0; i < routeObjList.length; i++) {
         marker = new google.maps.Marker({
              position: {
@@ -218,6 +218,10 @@ const setMap = () => {
     
     
 };
+
+
+
+
 
  const getInfoFromForms = () => {
     let searchInfo = {};
