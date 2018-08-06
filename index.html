@@ -14,7 +14,7 @@
   <div class='buttons'>
       <img class = 'icon' id = 'filter' src="imgs/FIlter.png" alt="options">
       <br>
-      <img class = 'icon' onclick="queryMPWithForms()" src="imgs/Search.png" alt="options">
+      <img class = 'icon' id='search-button' src="imgs/Search.png" alt="options">
   </div>
   
    <div id="menu" class="animated">
@@ -38,7 +38,6 @@
         <input class = "clear" type="text" id="minDiffTextInput" value="5.6">
         <h5>Maximum difficulty</h5>
         <input class = "clear" type="text" id ="maxDiffTextInput" value="5.10">
-<!--        <button onclick="queryMP()"><h3>Let's See Those Future Sends!</h3></button>-->
        </div>
    </div>
    
@@ -50,12 +49,7 @@
 <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2F7hM_zRpnXkBjoqYwXsDThomJ8Z5brk&callback=initMap">
     </script>
+    <script src="js/map.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>
-<!--var lat = '40.03';
-    var lon = '-105.25';
-    //To later be input via forms.
-    var maxDistance = '10';
-    var minDiff = '5.10';
-    var maxDiff = '5.11';-->
