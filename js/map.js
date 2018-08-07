@@ -94,14 +94,11 @@ function initMap() {
       });
     
     google.maps.event.addListener(map, 'click', function( event ){
-        if(document.getElementById('click-to-search').checked === true) {
+        if(getDropDownValue() === 'search-by-click') {
          let latLng = {};
-
          latLng.lat = event.latLng.lat();
          latLng.lng = event.latLng.lng();
-
-         mpQuery(latLng);
-             
+         makeQuery(latLng);
          }
                  
 });

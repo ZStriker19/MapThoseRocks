@@ -19,20 +19,26 @@
   
    <div id="menu" class="animated">
     <h4>Filter Your Search</h4>
-    <div class="inline">
-    <h5>Click to search</h5>
-    <label class="switch"/>
-        <input id="click-to-search" type="checkbox">
-        <span class="slider round"></span>
+    <div class="padding-bottom">
+    <h5>Search by:</h5>
+    <select id="search-by">
+      <option value="search-by-click">Map Click</option>
+      <option value="search-by-coords">Lat and Lng </option>
+      <option value="search-by-address">Address</option>
+    </select>
     </div>
     <div class="forms">
         <div id="location">
-            <h5>Latitude</h5>
-            <input type="text" class = "clear" id="latTextInput" value="40.03">
-            <h5>Longitude</h5>
-            <input class = "clear" id ="lngTextInput" type = "text" value="-105.25">
-            <h5>Address</h5>
-            <input class = "clear" id ="address" type = "text" value="New York">
+           <div id="coords">
+                <h5>Latitude</h5>
+                <input type="text" class = "clear" id="latTextInput" value="40.03">
+                <h5>Longitude</h5>
+                <input class = "clear" id ="lngTextInput" type = "text" value="-105.25">
+            </div>
+            <div id="address-form">
+                <h5>Address</h5>
+                <input class = "clear" id ="address" type = "text" value="New York">
+            </div>
         </div>
         <h5>How far away?</h5>
         <input class = "clear" type="text" id="maxDistanceTextInput" value="50">
