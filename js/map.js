@@ -95,27 +95,12 @@ function initMap() {
     
     google.maps.event.addListener(map, 'click', function( event ){
         if(document.getElementById('click-to-search').checked === true) {
-         let searchInfo = {};
+         let latLng = {};
 
-         let lat = event.latLng.lat();
-         let lng = event.latLng.lng();
+         latLng.lat = event.latLng.lat();
+         latLng.lng = event.latLng.lng();
 
-         var maxDistanceTextInput = document.getElementById('maxDistanceTextInput');
-         var maxDistance = maxDistanceTextInput.value;
-
-         var minDiffTextInput = document.getElementById('minDiffTextInput');
-         var minDiff = minDiffTextInput.value;
-
-         var maxDiffTextInput = document.getElementById('maxDiffTextInput');
-         var maxDiff = maxDiffTextInput.value;
-
-         searchInfo.lat = lat;
-         searchInfo.lng = lng;
-         searchInfo.maxDistance = maxDistance;
-         searchInfo.minDiff = minDiff;
-         searchInfo.maxDiff = maxDiff;
-
-         mpQuery(searchInfo);
+         mpQuery(latLng);
              
          }
                  
@@ -205,3 +190,5 @@ const setMap = () => {
         
     }
 };
+
+

@@ -1,4 +1,5 @@
 const routeObjList = [];
+const latLng = {};
 
  const getLocationFromForms = () => {
      let latLng = {};
@@ -9,20 +10,20 @@ const routeObjList = [];
  
  
  const getLocationFromGeolocation = () => {
-    let latLng = {};
-   fetch('https://maps.googleapis.com/maps/api/geocode/json?address=Boulder,+CO&key=AIzaSyC2F7hM_zRpnXkBjoqYwXsDThomJ8Z5brk')
-//    need to figure out how to find lat lng with objects changing each time. Or to just get back lat-lng by filtering
-//    components.
+   let address = modifyAddressForAPIQuery(getAddressFromForm());
+    console.log(address);
+   fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=AIzaSyC2F7hM_zRpnXkBjoqYwXsDThomJ8Z5brk`)
     .then(res => res.json())
     .then(res => { 
-       let latLng = {};
-       console.log(res.);
-    
+       latLng.lat = res.results[0].geometry.location.lat;
+       latLng.lng = res.results[0].geometry.location.lng;
+     
     }).catch(err => console.log('geolocation not working', err));
 }
 
          
 const mpQuery = (latLng) => {
+    console.log("this latlng" + latLng.lat);
     fetch(`https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=${latLng.lat}&lon=${latLng.lng} &maxDistance=${getMaxDistanceFromForm()}&minDiff=${getMinDiffFromForm()}&maxDiff=${getMaxDiffFromForm()}&key=200281230-f53e043253280bf68ad7836198a7d45b`)
     
     .then(res => res.json())
@@ -39,8 +40,11 @@ const mpQuery = (latLng) => {
 
 
 const queryMPWithGeolocation = () => {
-    mpQuery(getInfoFromGeolocation())
+    console.log(latLng);
+    getLocationFromGeolocation();
+    mpQuery(latLng);
 }
+
 
 
 const queryMPWithForms = () => {
@@ -67,11 +71,18 @@ const getMaxDiffFromForm = () => {
      return document.getElementById('maxDiffTextInput').value;
 }
 
+const getAddressFromForm = () => {
+    return document.getElementById('address').value;
+}
+
+const modifyAddressForAPIQuery = (address) => {
+    return address.replace(" ", ",")
+}
+
 
 
 $(document).ready(function() {
     $('#click-to-search').on('change', (event) => {
-        console.log("hit check")
         let location = $('#location');
         event.target.checked ? location.hide('slow') : location.show('slow');
     });
