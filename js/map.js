@@ -2,8 +2,6 @@ var map = null;
 
 
 function initMap() {
-    console.log("We init dis map");
-    
     let startingPointBoulderCO = {lat: 40.0150, lng: -105.2705};
 
       map = new google.maps.Map(
@@ -95,17 +93,17 @@ function initMap() {
     
     google.maps.event.addListener(map, 'click', function( event ){
         if(getDropDownValue() === 'search-by-click') {
-         let latLng = {};
-         latLng.lat = event.latLng.lat();
-         latLng.lng = event.latLng.lng();
-         makeQuery(latLng);
+         let coords = {};
+         coords.lat = event.latLng.lat();
+         coords.lng = event.latLng.lng();
+         makeQuery(coords);
+         setMapPins();
          }
                  
-});
+    });
 }
 
-
-const setMap = () => {
+const setMapPins = () => {
     const infowindow = new google.maps.InfoWindow;
     let marker, i;
     for ( i = 0; i < routeObjList.length; i++) {
@@ -119,13 +117,13 @@ const setMap = () => {
         });
         map.setZoom(10);
         map.panTo(marker.position);
+    
         
-        var infowindow2 = new google.maps.InfoWindow;
-        google.maps.event.addListener(marker, 'click', (function(marker, i) {
-         return function() {
-             let currentRoute = routeObjList[i];
-        
-             let contentString = 
+    const infowindow2 = new google.maps.InfoWindow;
+    google.maps.event.addListener(marker, 'click', (function(marker, i) {
+     return function() {
+         let currentRoute = routeObjList[i];
+         let contentString = 
 `<div class="iw-container" style= "background-image: url(${currentRoute.imgMedium})" >
     <div class="white-cover">
         <div class = "iw-title">
@@ -157,7 +155,6 @@ const setMap = () => {
             </div>
     </div>
 </div>`;
-             
              infowindow2.setContent(contentString);
              infowindow2.open(map, marker);
              if (infowindow){
@@ -165,6 +162,7 @@ const setMap = () => {
              }
          }
         })(marker, i));
+        
         
          google.maps.event.addListener(marker, 'mouseover', (function(marker, i) {
          return function() {
@@ -176,6 +174,7 @@ const setMap = () => {
              infowindow.open(map, marker);
          }
         })(marker, i));
+        
              
          google.maps.event.addListener(marker, 'mouseout', (function(marker, i) {
          return function() {
@@ -184,7 +183,6 @@ const setMap = () => {
              }
          }
         })(marker, i));
-        
     }
 };
 
