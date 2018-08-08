@@ -1,6 +1,6 @@
 const routeObjList = [];
 
-const queryMP = () => {
+const showRoutes = () => {
     let dropDownSelectedValue = getDropDownValue();
     if (dropDownSelectedValue === "search-by-click"){
         return;
@@ -53,6 +53,7 @@ const makeQuery = (coords) => {
             routeObjList.push(res.routes[i]);
         }
          setMapPins();
+        
     }).catch(err => console.log('mpQuery not working!', err));
 }
 
@@ -114,7 +115,7 @@ $(document).ready(function() {
     
     
     $('#search-button').on('click', (event) => {
-        queryMP();
+        showRoutes();
     })
     
     

@@ -97,7 +97,6 @@ function initMap() {
          coords.lat = event.latLng.lat();
          coords.lng = event.latLng.lng();
          makeQuery(coords);
-         setMapPins();
          }
                  
     });
@@ -157,9 +156,6 @@ const setMapPins = () => {
 </div>`;
              infowindow2.setContent(contentString);
              infowindow2.open(map, marker);
-             if (infowindow){
-                 infowindow.close();
-             }
          }
         })(marker, i));
         
@@ -183,6 +179,7 @@ const setMapPins = () => {
              }
          }
         })(marker, i));
+        
     }
 };
 
